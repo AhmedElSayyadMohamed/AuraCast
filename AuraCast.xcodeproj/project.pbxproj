@@ -1,0 +1,584 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5845FD1D2FDA39B2005378E4 /* AuraCastApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845FD1C2FDA39B2005378E4 /* AuraCastApp.swift */; };
+		5845FD1F2FDA39B2005378E4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845FD1E2FDA39B2005378E4 /* ContentView.swift */; };
+		5845FD212FDA39B5005378E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5845FD202FDA39B5005378E4 /* Assets.xcassets */; };
+		5845FD242FDA39B5005378E4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5845FD232FDA39B5005378E4 /* Preview Assets.xcassets */; };
+		5845FD2E2FDA39B6005378E4 /* AuraCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845FD2D2FDA39B6005378E4 /* AuraCastTests.swift */; };
+		5845FD382FDA39B6005378E4 /* AuraCastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845FD372FDA39B6005378E4 /* AuraCastUITests.swift */; };
+		5845FD3A2FDA39B6005378E4 /* AuraCastUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845FD392FDA39B6005378E4 /* AuraCastUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5845FD2A2FDA39B6005378E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5845FD112FDA39B2005378E4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5845FD182FDA39B2005378E4;
+			remoteInfo = AuraCast;
+		};
+		5845FD342FDA39B6005378E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5845FD112FDA39B2005378E4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5845FD182FDA39B2005378E4;
+			remoteInfo = AuraCast;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5845FD192FDA39B2005378E4 /* AuraCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuraCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5845FD1C2FDA39B2005378E4 /* AuraCastApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuraCastApp.swift; sourceTree = "<group>"; };
+		5845FD1E2FDA39B2005378E4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5845FD202FDA39B5005378E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5845FD232FDA39B5005378E4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5845FD292FDA39B6005378E4 /* AuraCastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuraCastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5845FD2D2FDA39B6005378E4 /* AuraCastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuraCastTests.swift; sourceTree = "<group>"; };
+		5845FD332FDA39B6005378E4 /* AuraCastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuraCastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5845FD372FDA39B6005378E4 /* AuraCastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuraCastUITests.swift; sourceTree = "<group>"; };
+		5845FD392FDA39B6005378E4 /* AuraCastUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuraCastUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5845FD162FDA39B2005378E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5845FD262FDA39B6005378E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5845FD302FDA39B6005378E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5845FD102FDA39B2005378E4 = {
+			isa = PBXGroup;
+			children = (
+				5845FD1B2FDA39B2005378E4 /* AuraCast */,
+				5845FD2C2FDA39B6005378E4 /* AuraCastTests */,
+				5845FD362FDA39B6005378E4 /* AuraCastUITests */,
+				5845FD1A2FDA39B2005378E4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5845FD1A2FDA39B2005378E4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5845FD192FDA39B2005378E4 /* AuraCast.app */,
+				5845FD292FDA39B6005378E4 /* AuraCastTests.xctest */,
+				5845FD332FDA39B6005378E4 /* AuraCastUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5845FD1B2FDA39B2005378E4 /* AuraCast */ = {
+			isa = PBXGroup;
+			children = (
+				5845FD1C2FDA39B2005378E4 /* AuraCastApp.swift */,
+				5845FD1E2FDA39B2005378E4 /* ContentView.swift */,
+				5845FD202FDA39B5005378E4 /* Assets.xcassets */,
+				5845FD222FDA39B5005378E4 /* Preview Content */,
+			);
+			path = AuraCast;
+			sourceTree = "<group>";
+		};
+		5845FD222FDA39B5005378E4 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				5845FD232FDA39B5005378E4 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5845FD2C2FDA39B6005378E4 /* AuraCastTests */ = {
+			isa = PBXGroup;
+			children = (
+				5845FD2D2FDA39B6005378E4 /* AuraCastTests.swift */,
+			);
+			path = AuraCastTests;
+			sourceTree = "<group>";
+		};
+		5845FD362FDA39B6005378E4 /* AuraCastUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5845FD372FDA39B6005378E4 /* AuraCastUITests.swift */,
+				5845FD392FDA39B6005378E4 /* AuraCastUITestsLaunchTests.swift */,
+			);
+			path = AuraCastUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5845FD182FDA39B2005378E4 /* AuraCast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5845FD3D2FDA39B6005378E4 /* Build configuration list for PBXNativeTarget "AuraCast" */;
+			buildPhases = (
+				5845FD152FDA39B2005378E4 /* Sources */,
+				5845FD162FDA39B2005378E4 /* Frameworks */,
+				5845FD172FDA39B2005378E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AuraCast;
+			productName = AuraCast;
+			productReference = 5845FD192FDA39B2005378E4 /* AuraCast.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5845FD282FDA39B6005378E4 /* AuraCastTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5845FD402FDA39B6005378E4 /* Build configuration list for PBXNativeTarget "AuraCastTests" */;
+			buildPhases = (
+				5845FD252FDA39B6005378E4 /* Sources */,
+				5845FD262FDA39B6005378E4 /* Frameworks */,
+				5845FD272FDA39B6005378E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5845FD2B2FDA39B6005378E4 /* PBXTargetDependency */,
+			);
+			name = AuraCastTests;
+			productName = AuraCastTests;
+			productReference = 5845FD292FDA39B6005378E4 /* AuraCastTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5845FD322FDA39B6005378E4 /* AuraCastUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5845FD432FDA39B6005378E4 /* Build configuration list for PBXNativeTarget "AuraCastUITests" */;
+			buildPhases = (
+				5845FD2F2FDA39B6005378E4 /* Sources */,
+				5845FD302FDA39B6005378E4 /* Frameworks */,
+				5845FD312FDA39B6005378E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5845FD352FDA39B6005378E4 /* PBXTargetDependency */,
+			);
+			name = AuraCastUITests;
+			productName = AuraCastUITests;
+			productReference = 5845FD332FDA39B6005378E4 /* AuraCastUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5845FD112FDA39B2005378E4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					5845FD182FDA39B2005378E4 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					5845FD282FDA39B6005378E4 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 5845FD182FDA39B2005378E4;
+					};
+					5845FD322FDA39B6005378E4 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 5845FD182FDA39B2005378E4;
+					};
+				};
+			};
+			buildConfigurationList = 5845FD142FDA39B2005378E4 /* Build configuration list for PBXProject "AuraCast" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5845FD102FDA39B2005378E4;
+			productRefGroup = 5845FD1A2FDA39B2005378E4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5845FD182FDA39B2005378E4 /* AuraCast */,
+				5845FD282FDA39B6005378E4 /* AuraCastTests */,
+				5845FD322FDA39B6005378E4 /* AuraCastUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5845FD172FDA39B2005378E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5845FD242FDA39B5005378E4 /* Preview Assets.xcassets in Resources */,
+				5845FD212FDA39B5005378E4 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5845FD272FDA39B6005378E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5845FD312FDA39B6005378E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5845FD152FDA39B2005378E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5845FD1F2FDA39B2005378E4 /* ContentView.swift in Sources */,
+				5845FD1D2FDA39B2005378E4 /* AuraCastApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5845FD252FDA39B6005378E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5845FD2E2FDA39B6005378E4 /* AuraCastTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5845FD2F2FDA39B6005378E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5845FD3A2FDA39B6005378E4 /* AuraCastUITestsLaunchTests.swift in Sources */,
+				5845FD382FDA39B6005378E4 /* AuraCastUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5845FD2B2FDA39B6005378E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5845FD182FDA39B2005378E4 /* AuraCast */;
+			targetProxy = 5845FD2A2FDA39B6005378E4 /* PBXContainerItemProxy */;
+		};
+		5845FD352FDA39B6005378E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5845FD182FDA39B2005378E4 /* AuraCast */;
+			targetProxy = 5845FD342FDA39B6005378E4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5845FD3B2FDA39B6005378E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5845FD3C2FDA39B6005378E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5845FD3E2FDA39B6005378E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"AuraCast/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.AuraCast;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5845FD3F2FDA39B6005378E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"AuraCast/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.AuraCast;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5845FD412FDA39B6005378E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.AuraCastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AuraCast.app/AuraCast";
+			};
+			name = Debug;
+		};
+		5845FD422FDA39B6005378E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.AuraCastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AuraCast.app/AuraCast";
+			};
+			name = Release;
+		};
+		5845FD442FDA39B6005378E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.AuraCastUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AuraCast;
+			};
+			name = Debug;
+		};
+		5845FD452FDA39B6005378E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = AhmedElSayyad.AuraCastUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AuraCast;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5845FD142FDA39B2005378E4 /* Build configuration list for PBXProject "AuraCast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5845FD3B2FDA39B6005378E4 /* Debug */,
+				5845FD3C2FDA39B6005378E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5845FD3D2FDA39B6005378E4 /* Build configuration list for PBXNativeTarget "AuraCast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5845FD3E2FDA39B6005378E4 /* Debug */,
+				5845FD3F2FDA39B6005378E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5845FD402FDA39B6005378E4 /* Build configuration list for PBXNativeTarget "AuraCastTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5845FD412FDA39B6005378E4 /* Debug */,
+				5845FD422FDA39B6005378E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5845FD432FDA39B6005378E4 /* Build configuration list for PBXNativeTarget "AuraCastUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5845FD442FDA39B6005378E4 /* Debug */,
+				5845FD452FDA39B6005378E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5845FD112FDA39B2005378E4 /* Project object */;
+}
