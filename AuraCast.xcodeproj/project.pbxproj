@@ -14,6 +14,9 @@
 		5845FD2E2FDA39B6005378E4 /* AuraCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845FD2D2FDA39B6005378E4 /* AuraCastTests.swift */; };
 		5845FD382FDA39B6005378E4 /* AuraCastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845FD372FDA39B6005378E4 /* AuraCastUITests.swift */; };
 		5845FD3A2FDA39B6005378E4 /* AuraCastUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845FD392FDA39B6005378E4 /* AuraCastUITestsLaunchTests.swift */; };
+		58F976CC2FDA48E20060F6AC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F976CB2FDA48E10060F6AC /* Extensions.swift */; };
+		58F976CE2FDA4E440060F6AC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F976CD2FDA4E440060F6AC /* HomeView.swift */; };
+		58F976D02FDA65DB0060F6AC /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F976CF2FDA65DB0060F6AC /* TabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		5845FD332FDA39B6005378E4 /* AuraCastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuraCastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5845FD372FDA39B6005378E4 /* AuraCastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuraCastUITests.swift; sourceTree = "<group>"; };
 		5845FD392FDA39B6005378E4 /* AuraCastUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuraCastUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		58F976CB2FDA48E10060F6AC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		58F976CD2FDA4E440060F6AC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		58F976CF2FDA65DB0060F6AC /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +100,11 @@
 		5845FD1B2FDA39B2005378E4 /* AuraCast */ = {
 			isa = PBXGroup;
 			children = (
+				58F976C42FDA470D0060F6AC /* Models */,
+				58F976C32FDA46AD0060F6AC /* Views */,
+				58F976C52FDA47170060F6AC /* ViewModels */,
+				58F976C62FDA472E0060F6AC /* Utils */,
 				5845FD1C2FDA39B2005378E4 /* AuraCastApp.swift */,
-				5845FD1E2FDA39B2005378E4 /* ContentView.swift */,
 				5845FD202FDA39B5005378E4 /* Assets.xcassets */,
 				5845FD222FDA39B5005378E4 /* Preview Content */,
 			);
@@ -125,6 +134,70 @@
 				5845FD392FDA39B6005378E4 /* AuraCastUITestsLaunchTests.swift */,
 			);
 			path = AuraCastUITests;
+			sourceTree = "<group>";
+		};
+		58F976C32FDA46AD0060F6AC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				58F976C72FDA479E0060F6AC /* Main */,
+				58F976C92FDA47B00060F6AC /* Details */,
+				58F976C82FDA47A80060F6AC /* Navigation */,
+				58F976CA2FDA47BF0060F6AC /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		58F976C42FDA470D0060F6AC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		58F976C52FDA47170060F6AC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		58F976C62FDA472E0060F6AC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				58F976CB2FDA48E10060F6AC /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		58F976C72FDA479E0060F6AC /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5845FD1E2FDA39B2005378E4 /* ContentView.swift */,
+				58F976CD2FDA4E440060F6AC /* HomeView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		58F976C82FDA47A80060F6AC /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				58F976CF2FDA65DB0060F6AC /* TabBar.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		58F976C92FDA47B00060F6AC /* Details */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		58F976CA2FDA47BF0060F6AC /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +331,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5845FD1F2FDA39B2005378E4 /* ContentView.swift in Sources */,
+				58F976CE2FDA4E440060F6AC /* HomeView.swift in Sources */,
+				58F976CC2FDA48E20060F6AC /* Extensions.swift in Sources */,
 				5845FD1D2FDA39B2005378E4 /* AuraCastApp.swift in Sources */,
+				58F976D02FDA65DB0060F6AC /* TabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
