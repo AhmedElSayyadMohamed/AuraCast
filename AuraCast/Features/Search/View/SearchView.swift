@@ -1,124 +1,163 @@
-//
-//  WeatherView.swift
-//  AuraCast
-//
-//  Created by Ahmed El Sayyad Mohamed on 11/06/2026.
-//
-
 import SwiftUI
+import Lottie
 
 struct SearchView: View {
+    
     @StateObject private var viewModel = SearchViewModel()
+    @State private var navigateToFavorites = false
 
-    var body: some View {
-        NavigationView {
-            ZStack {
-                Color.background
-                    .ignoresSafeArea()
-
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 20) {
-                        if viewModel.isShowingSearchResults {
-                            ForEach(viewModel.searchResults) { city in
-                                NavigationLink(value: city) {
-                                    SearchResultRow(city: city)
-                                }
-                                .buttonStyle(.plain)
-                            }
-
-                            if viewModel.isSearching {
-                                ProgressView()
-                                    .padding(.top, 24)
-                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                            }
-                        } else {
-                            if !viewModel.savedForecasts.isEmpty {
-                                ForEach(viewModel.savedForecasts, id: \.location.name) { forecast in
-                                    NavigationLink(value: forecast.toSearchResult()) {
-                                        WeatherWidget(forecast: forecast)
-                                    }
-                                    .buttonStyle(.plain)
-                                }
-                            } else {
-                                VStack(spacing: 12) {
-                                    Image(systemName: "star.fill")
-                                        .font(.system(size: 40))
-                                        .foregroundColor(.white.opacity(0.3))
-                                    Text("No Favorite Locations Yet")
-                                        .font(.system(.body, design: .rounded))
-                                        .foregroundColor(.white.opacity(0.6))
-                                }
-                                .padding(.top, 60)
-                            }
-                        }
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.top, 120)
-                }
-            }
-            .overlay(alignment: .top) {
-                NavigationBar(searchText: $viewModel.searchText)
-                    .background(
-                        Color.background
-                            .opacity(0.8)
-                            .background(.ultraThinMaterial)
-                            .ignoresSafeArea(edges: .top)
-                    )
-            }
-            .onChange(of: viewModel.searchText) { _, newValue in
-                viewModel.onSearchTextChanged(newValue)
-            }
-            .navigationDestination(for: CitySearchResult.self) { city in
-                WeatherDetailView(
-                    viewModel: WeatherDetailViewModel(name: city.name, lat: city.lat, lon: city.lon)
+    var searchResults: [Forecast] {
+        if viewModel.searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return []
+        } else {
+            return viewModel.searchResults.map { apiCity in
+                Forecast(
+                    id: UUID(),
+                    date: Date(),
+                    weather: .cloudy,
+                    probability: 0,
+                    temperature: 0,
+                    high: Int(apiCity.lat),
+                    low: Int(apiCity.lon),
+                    lat: apiCity.lat,
+                    lon: apiCity.lon,
+                    location: "\(apiCity.name), \(apiCity.country)"
                 )
-            }
-            .navigationBarHidden(true)
-            .task {
-                await viewModel.onAppear()
             }
         }
     }
+
+    var body: some View {
+        ZStack {
+            Color.background
+                .ignoresSafeArea()
+
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 20) {
+                    if viewModel.searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                        Spacer()
+                            .frame(height: 60)
+                        
+                        VStack(spacing: 16) {
+                            LottieView(animationName: "search-image")
+                                .frame(width: 200, height: 200)
+                            
+                            Text("Loading Weather...")
+                                .foregroundColor(.white)
+                                .font(.headline)
+                        }
+                    } else if viewModel.isSearching {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            .padding(.top, 20)
+                    } else {
+                        ForEach(searchResults) { forecast in
+                            NavigationLink(
+                                destination: WeatherDetailView(
+                                    viewModel: WeatherDetailViewModel(),
+                                    cityName: forecast.location,
+                                    lat: forecast.lat,
+                                    lon: forecast.lon
+                                )
+                            ) {
+                                SearchCityWidget(forecast: forecast)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
+                }
+            }
+            .safeAreaInset(edge: .top) {
+                EmptyView()
+                    .frame(height: 110)
+            }
+            
+            NavigationLink(
+                destination: FavoritesListView(),
+                isActive: $navigateToFavorites
+            ) {
+                EmptyView()
+            }
+        }
+        .overlay {
+            NavigationBar(searchText: $viewModel.searchText)
+                .environment(\.onHeartTap, { navigateToFavorites = true })
+        }
+        .navigationBarHidden(true)
+    
+    }
 }
 
-struct SearchResultRow: View {
-    let city: CitySearchResult
-    
+
+struct SearchCityWidget: View {
+    var forecast: Forecast
+
     var body: some View {
-        HStack(spacing: 16) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(city.name)
-                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+        HStack {
+            VStack(alignment: .leading, spacing: 6) {
+                Text(forecast.location)
+                    .font(.headline)
                     .foregroundColor(.white)
+                    .lineLimit(1)
                 
-                if let country = city.country {
-                    Text(country)
-                        .font(.system(size: 14, weight: .regular, design: .rounded))
-                        .foregroundColor(.secondary)
-                }
+                Text("H:\(forecast.high)°  L:\(forecast.low)°")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
             }
             
             Spacer()
-            
-            Image(systemName: "chevron.right")
-                .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(.white.opacity(0.4))
         }
-        .padding(.vertical, 14)
-        .padding(.horizontal, 16)
-        .background(.ultraThinMaterial)
-        .background(Color.white.opacity(0.03))
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-        .overlay(
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .stroke(Color.white.opacity(0.08), lineWidth: 1)
-        )
+        .padding(.all, 16)
+        .frame(maxWidth: .infinity)
+        .background(Color.weatherWidgetBackground)
+        .cornerRadius(12)
+        .padding(.horizontal, 20)
+    }
+}
+struct LottieView: UIViewRepresentable {
+    let animationName: String
+    var loopMode: LottieLoopMode = .loop
+
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView(frame: .zero)
+        
+        let animationView = LottieAnimationView(animation: .named(animationName))
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = loopMode
+        animationView.play()
+        
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(animationView)
+        
+        NSLayoutConstraint.activate([
+            animationView.heightAnchor.constraint(equalTo: view.heightAnchor),
+            animationView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            animationView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
+        return view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+struct WeatherView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            SearchView()
+                .preferredColorScheme(.dark)
+        }
     }
 }
 
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView()
-            .preferredColorScheme(.dark)
+private struct OnHeartTapKey: EnvironmentKey {
+    static let defaultValue: (() -> Void)? = nil
+}
+
+extension EnvironmentValues {
+    var onHeartTap: (() -> Void)? {
+        get { self[OnHeartTapKey.self] }
+        set { self[OnHeartTapKey.self] = newValue }
     }
 }

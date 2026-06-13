@@ -1,28 +1,24 @@
-//
-//  CityDetailView.swift
-//  AuraCast
-//
-//  Created by Ahmed El Sayyad Mohamed on 12/06/2026.
-//
-
 import SwiftUI
 
 struct WeatherDetailView: View {
-    @ObservedObject var viewModel: SearchViewModel
+    @ObservedObject var viewModel: WeatherDetailViewModel
+    
     let cityName: String
     let lat: Double
     let lon: Double
+    
     @Environment(\.dismiss) private var dismiss
+    
+    @State private var selectedDay: ForecastDay?
+    @State private var navigateToHourly = false
     
     var body: some View {
         ZStack {
-            Color.background
-                .ignoresSafeArea()
-            
-            Image(viewModel.isMorning ? "Light-Background" : "Background")
+            Color.background.ignoresSafeArea()
+            Image(viewModel.isMorning ? "Light-Background": "Background" )
                 .resizable()
                 .ignoresSafeArea()
-            
+
             if viewModel.isLoadingDetail {
                 ProgressView()
                     .scaleEffect(1.5)
@@ -34,8 +30,25 @@ struct WeatherDetailView: View {
                             Text(cityName)
                                 .font(.system(size: 34, weight: .medium, design: .rounded))
                             
-                            Text(viewModel.detailTemperature)
-                                .font(.system(size: 80, weight: .thin, design: .rounded))
+                            HStack(spacing: 50) {
+                                if let url = viewModel.detailConditionIconURL {
+                                    AsyncImage(url: url) { phase in
+                                        switch phase {
+                                        case .success(let image):
+                                            image.resizable().scaledToFit()
+                                        case .failure(_), .empty:
+                                            ProgressView()
+                                        @unknown default:
+                                            EmptyView()
+                                        }
+                                    }
+                                    .frame(width: 100, height: 100)
+                                }
+                                Text(viewModel.detailTemperature)
+                                    .font(.system(size: 80, weight: .thin, design: .rounded))
+                                
+                                Spacer()
+                            }
                             
                             Text(viewModel.detailConditionText)
                                 .font(.system(size: 20, weight: .semibold, design: .rounded))
@@ -47,38 +60,51 @@ struct WeatherDetailView: View {
                         .foregroundColor(viewModel.isMorning ? .black : .white)
                         .padding(.top, 40)
                         
-                        if let url = viewModel.detailConditionIconURL {
-                            AsyncImage(url: url) { img in
-                                img.resizable().scaledToFit()
-                            } placeholder: {
-                                ProgressView()
+                        HStack {
+                            Text("3-DAY FORECAST")
+                                .font(.caption.weight(.semibold))
+                            Spacer()
+                        }
+                        .foregroundColor(viewModel.isMorning ? .black.opacity(0.6) : .white.opacity(0.6))
+                        .padding(.horizontal, 20)
+                        .padding(.top, 4)
+
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 12) {
+                                ForEach(Array(viewModel.detailForecastDays.enumerated()), id: \.element.date) { index, day in
+                                    NavigationLink(
+                                        destination: HourlyDetailView(day: day)
+                                    ) {
+                                        DayForecastCard(day: day, index: index, isMorning: viewModel.isMorning)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                }
                             }
-                            .frame(width: 100, height: 100)
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 16)
                         }
                         
-                        VStack(alignment: .leading, spacing: 16) {
-                            Text("3-DAY FORECAST")
-                                .font(.system(size: 12, weight: .bold, design: .rounded))
-                                .tracking(1.2)
+                        VStack(spacing: 12) {
+                            Text("CURRENT CONDITIONS")
+                                .font(.caption.weight(.semibold))
                                 .foregroundColor(viewModel.isMorning ? .black.opacity(0.6) : .white.opacity(0.6))
-                                .padding(.horizontal, 8)
-                            
-                            ForEach(viewModel.detailForecastDays, id: \.date) { day in
-                                DetailForecastRow(day: day, isMorning: viewModel.isMorning)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+
+                            LazyVGrid(
+                                columns: [GridItem(.flexible()), GridItem(.flexible())],
+                                spacing: 12
+                            ) {
+                                StatTile(icon: "eye.fill", title: "VISIBILITY", value: viewModel.selectedCityWeather?.current.vis_km != nil ? "\(Int(viewModel.selectedCityWeather!.current.vis_km)) km" : "--", isMorning: viewModel.isMorning)
+                                StatTile(icon: "humidity.fill", title: "HUMIDITY", value: viewModel.selectedCityWeather?.current.humidity != nil ? "\(viewModel.selectedCityWeather!.current.humidity)%" : "--", isMorning: viewModel.isMorning)
+                                StatTile(icon: "thermometer.medium", title: "FEELS LIKE", value: viewModel.selectedCityWeather?.current.feelslike_c != nil ? "\(Int(viewModel.selectedCityWeather!.current.feelslike_c))°" : "--", isMorning: viewModel.isMorning)
+                                StatTile(icon: "gauge.medium", title: "PRESSURE", value: viewModel.selectedCityWeather?.current.pressure_mb != nil ? "\(Int(viewModel.selectedCityWeather!.current.pressure_mb)) hPa" : "--", isMorning: viewModel.isMorning)
                             }
                         }
-                        .padding(20)
-                        .background(.ultraThinMaterial)
-                        .background(viewModel.isMorning ? Color.white.opacity(0.3) : Color.white.opacity(0.05))
-                        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                                .stroke(viewModel.isMorning ? Color.black.opacity(0.05) : Color.white.opacity(0.1), lineWidth: 1)
-                        )
                         .padding(.horizontal, 20)
                     }
                     .padding(.bottom, 40)
                 }
+                .transition(.opacity)
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -104,8 +130,10 @@ struct WeatherDetailView: View {
                 }
             }
         }
-        .task {
-            await viewModel.fetchCityDetails(lat: lat, lon: lon)
+        .onAppear {
+            Task {
+                await viewModel.fetchCityDetails(lat: lat, lon: lon)
+            }
         }
     }
 }

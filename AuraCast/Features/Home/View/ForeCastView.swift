@@ -11,11 +11,7 @@ struct ForecastView: View {
     var isExpanded: Bool { bottomSheetTranslationProrated > 0.5 }
 
     private var sheetBackgroundStyle: AnyShapeStyle {
-//        if viewModel.isMorning {
-//            return AnyShapeStyle(Color.bottomSheetBackground)
-//        } else {
-//            return AnyShapeStyle(Color.bottomSheetBackground)
-//        }
+
         return AnyShapeStyle(Color.bottomSheetBackground)
 
     }
@@ -163,7 +159,7 @@ struct DayForecastCard: View {
                     .font(.subheadline.weight(.semibold))
                     .lineLimit(1)
                     .minimumScaleFactor(0.7)
-                    .foregroundColor(isMorning ? .black : .white)
+                    .foregroundColor(isMorning ? .black.opacity(0.8) : .white)
 
                 if let url = iconURL {
                     AsyncImage(url: url) { img in
@@ -171,14 +167,14 @@ struct DayForecastCard: View {
                     } placeholder: {
                         ProgressView()
                             .scaleEffect(0.5)
-                            .progressViewStyle(CircularProgressViewStyle(tint: isMorning ? .black : .white))
+                            .progressViewStyle(CircularProgressViewStyle(tint: isMorning ? .black.opacity(0.8) : .white))
                     }
                     .frame(width: 36, height: 36)
                 }
 
                 Text("\(Int(day.day.maxtemp_c))°")
                     .font(.title3.weight(.semibold))
-                    .foregroundColor(isMorning ? .black : .white)
+                    .foregroundColor(isMorning ? .black.opacity(0.8) : .white)
 
                 Rectangle()
                     .fill(isMorning ? Color.black.opacity(0.1) : .white.opacity(0.2))
@@ -186,7 +182,7 @@ struct DayForecastCard: View {
 
                 Text("\(Int(day.day.mintemp_c))°")
                     .font(.subheadline)
-                    .foregroundColor(isMorning ? .black : .white)
+                    .foregroundColor(isMorning ? .black.opacity(0.8) : .white)
             }
             .padding(.vertical, 16)
             .frame(width: 80, height: 160)
@@ -200,7 +196,6 @@ struct DayForecastCard: View {
     }
 }
 
-// MARK: - Stats Grid View
 struct StatsGridView: View {
     let isMorning: Bool
     @EnvironmentObject var viewModel: HomeViewModel

@@ -2,7 +2,7 @@
 //  SearchViewModel.swift
 //  AuraCast
 //
-//  Created by Ahmed El Sayyad Mohamed on 12/06/2026.
+//  Created by Ahmed El Sayyad Mohamed on 10/06/2026.
 //
 
 import Foundation
@@ -12,13 +12,8 @@ import Combine
 class SearchViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var searchResults: [CitySearchResult] = []
-    @Published var savedForecasts: [WeatherResponse] = []
     @Published var isSearching = false
-    
     @Published var selectedCityWeather: WeatherResponse?
-    @Published var isLoadingDetail = false
-    @Published var detailErrorMessage: String?
-    @Published var isDetailCitySaved = false
     
     private let service = WeatherService()
     private var cancellables = Set<AnyCancellable>()
@@ -31,28 +26,6 @@ class SearchViewModel: ObservableObject {
         let hour = Calendar.current.component(.hour, from: .now)
         return hour >= 5 && hour < 18
     }
-    
-    var detailTemperature: String {
-        guard let t = selectedCityWeather?.current.temp_c else { return "--" }
-        return "\(Int(t))°"
-    }
-    
-    var detailConditionText: String { selectedCityWeather?.current.condition.text ?? "--" }
-    
-    var detailHighLowText: String {
-        guard let d = selectedCityWeather?.forecast.forecastday.first?.day else { return "H:--   L:--" }
-        return "H:\(Int(d.maxtemp_c))°   L:\(Int(d.mintemp_c))°"
-    }
-    
-    var detailConditionIconURL: URL? {
-        guard let icon = selectedCityWeather?.current.condition.icon else { return nil }
-        return URL(string: "https:\(icon)")
-    }
-    
-    var detailForecastDays: [ForecastDay] {
-        selectedCityWeather?.forecast.forecastday ?? []
-    }
-    
     init() {
         setupSearchDebounce()
     }
@@ -75,26 +48,13 @@ class SearchViewModel: ObservableObject {
     
     private func performSearch(query: String) async {
         isSearching = true
-        isSearching = false
-    }
-    
-    func fetchCityDetails(lat: Double, lon: Double) async {
-        isLoadingDetail = true
-        detailErrorMessage = nil
+        defer { isSearching = false }
         do {
-            selectedCityWeather = try await service.fetchWeather(lat: lat, lon: lon)
-            isDetailCitySaved = false
+            self.searchResults = try await service.searchCities(query: query)
         } catch {
-            detailErrorMessage = error.localizedDescription
+            print("Search failed: \(error.localizedDescription)")
+            self.searchResults = []
         }
-        isLoadingDetail = false
     }
     
-    func toggleSaveDetailCity() {
-        isDetailCitySaved.toggle()
-    }
-    
-    func onSearchTextChanged(_ text: String) {}
-    
-    func onAppear() async {}
 }

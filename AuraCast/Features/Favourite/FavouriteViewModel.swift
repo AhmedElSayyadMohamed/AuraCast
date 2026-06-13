@@ -1,8 +1,35 @@
-//
-//  FavouriteViewModel.swift
-//  AuraCast
-//
-//  Created by Ahmed El Sayyad Mohamed on 12/06/2026.
-//
-
 import Foundation
+import Combine
+
+class FavoritesViewModel: ObservableObject {
+    @Published var favoriteCities: [Forecast] = []
+    
+    let repository: WeatherRepositoryProtocol
+    
+    init(repository: WeatherRepositoryProtocol = WeatherRepository()) {
+        self.repository = repository
+        loadFavorites()
+    }
+    
+    func loadFavorites() {
+        self.favoriteCities = repository.getFavoriteLocations()
+    }
+    
+    func removeCity(at offsets: IndexSet) {
+        for index in offsets {
+            let city = favoriteCities[index]
+            repository.removeLocationFromFavorites(lat: city.lat, lon: city.lon)
+        }
+        
+        loadFavorites()
+    }
+    
+    func toggleFavorite(forecast: Forecast) {
+        if repository.checkIsFavorite(lat: forecast.lat, lon: forecast.lon) {
+            repository.removeLocationFromFavorites(lat: forecast.lat, lon: forecast.lon)
+        } else {
+            repository.addLocationToFavorites(forecast: forecast)
+        }
+        loadFavorites()
+    }
+}

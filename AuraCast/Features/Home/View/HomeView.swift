@@ -14,6 +14,8 @@ struct HomeView: View {
     @State private var bottomSheetPosition: BottomSheetPosition = .middle
     @State private var bottomSheetTranslation: CGFloat = BottomSheetPosition.middle.rawValue
     @State private var hasDragged: Bool = false
+    
+    @State private var navigateToFavorites = false
 
     var bottomSheetTranslationProrated: CGFloat {
         (bottomSheetTranslation - BottomSheetPosition.middle.rawValue) /
@@ -42,22 +44,34 @@ struct HomeView: View {
                         .offset(y: -bottomSheetTranslationProrated * imageOffset)
 
                     VStack(spacing: 4) {
-                        if hasDragged{
+                        HStack {
+                            Spacer()
+                            
+                            Button {
+                                navigateToFavorites = true
+                            } label: {
+                                Image(systemName: "bookmark.fill")
+                                    .font(.system(size: 18, weight: .semibold))
+                                    .foregroundColor(viewModel.isMorning ? .black : .white)
+                                    .padding(.trailing, 20)
+                            }
+                        }
+                        
+                        if hasDragged {
                             Text(viewModel.locationName)
                                 .foregroundColor(.white)
                                 .font(.largeTitle.weight(.medium)).padding(.top)
                             Text(currentFormattedDate)
                                 .foregroundColor(.white)
                                 .font(.subheadline.weight(.medium))
-                        }else{
+                        } else {
                             Text(viewModel.locationName)
                                 .font(.largeTitle.weight(.medium))
                             Text(currentFormattedDate)
                                 .font(.subheadline.weight(.medium))
                         }
 
-                        
-                        HStack(alignment:.top,spacing:30){
+                        HStack(alignment: .top, spacing: 35) {
                             if let url = viewModel.conditionIconURL {
                                 AsyncImage(url: url) { img in
                                     img.resizable().scaledToFit()
@@ -72,22 +86,19 @@ struct HomeView: View {
                             Spacer()
                         }
                       
-
                         Text("\(viewModel.highTemp)   \(viewModel.lowTemp)")
                             .font(.title3.weight(.semibold))
                             .opacity(1 - bottomSheetTranslationProrated)
-
-
 
                         Spacer()
                     }
                     .padding(.top, 20)
                     .offset(y: -bottomSheetTranslationProrated * 46)
-                    .foregroundColor(viewModel.isMorning ? .black : .white)
+                    .foregroundColor(viewModel.isMorning ? .black.opacity(0.8) : .white)
 
                     if viewModel.isLoading {
                         ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: viewModel.isMorning ? .black : .white))
+                            .progressViewStyle(CircularProgressViewStyle(tint: viewModel.isMorning ? .black.opacity(0.8) : .white))
                             .scaleEffect(1.5)
                     }
 
@@ -108,6 +119,13 @@ struct HomeView: View {
                         }
                     })
                     .offset(y: bottomSheetTranslationProrated * 115)
+                    
+                    NavigationLink(
+                        destination: FavoritesListView(),
+                        isActive: $navigateToFavorites
+                    ) {
+                        EmptyView()
+                    }
                 }
             }
             .navigationBarHidden(true)
@@ -142,7 +160,7 @@ struct HomeView: View {
         let tempStr = viewModel.temperature
         let condStr = viewModel.conditionText
         
-        let primaryColor: Color = viewModel.isMorning ? .black : .white
+        let primaryColor: Color = viewModel.isMorning ? .black.opacity(0.8) : .white
         let secondaryColor: Color = viewModel.isMorning ? .black.opacity(0.6) : .secondary
         
         var string = AttributedString(tempStr + (hasDragged ? " | " : "\n") + condStr)
@@ -152,14 +170,10 @@ struct HomeView: View {
                 size: 96 - (bottomSheetTranslationProrated * (96 - 20)),
                 weight: hasDragged ? .semibold : .thin
             )
-            if hasDragged{
+            if hasDragged {
                 string[temp].foregroundColor = .white
-
-            }else{
-                string[temp].foregroundColor = .white
-
+            } else {
                 string[temp].foregroundColor = primaryColor
-
             }
         }
         

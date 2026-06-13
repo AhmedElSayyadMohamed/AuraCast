@@ -20,8 +20,8 @@ class HomeViewModel: ObservableObject {
 
     var isMorning: Bool {
         let hour = Calendar.current.component(.hour, from: .now)
-//        return hour >= 5 && hour < 18
-        return false
+        return hour >= 5 && hour < 18
+//        return true
     }
     
     var locationName: String { currentWeather?.location.name ?? "" }
