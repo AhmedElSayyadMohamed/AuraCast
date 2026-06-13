@@ -8,17 +8,14 @@ struct NavigationBar: View {
     var body: some View {
         VStack(spacing: 8) {
             HStack {
-                // MARK: Back Button
                 Button {
                     dismiss()
                 } label: {
                     HStack(spacing: 5) {
-                        // MARK: Back Button Icon
                         Image(systemName: "chevron.left")
                             .font(.system(size: 23).weight(.medium))
                             .foregroundColor(.secondary)
                         
-                        // MARK: Back Button Label
                         Text("Weather")
                             .font(.title)
                             .foregroundColor(.primary)
@@ -28,14 +25,9 @@ struct NavigationBar: View {
                 
                 Spacer()
                 
-                // MARK: More Button
-                Image(systemName: "ellipsis.circle")
-                    .font(.system(size: 28))
-                    .frame(width: 44, height: 44, alignment: .trailing)
             }
             .frame(height: 52)
             
-            // MARK: Search Bar
             HStack(spacing: 2) {
                 Image(systemName: "magnifyingglass")
                 
