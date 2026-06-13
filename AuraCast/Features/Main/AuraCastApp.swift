@@ -15,7 +15,8 @@ struct AuraCastApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, coreDataManager.context)
-                .environmentObject(WeatherViewModel())
+            
+//                .environmentObject(WeatherViewModel())
         }
     }
 }
