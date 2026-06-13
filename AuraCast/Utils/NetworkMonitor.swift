@@ -1,8 +1,17 @@
-//
-//  NetworkMonitor.swift
-//  AuraCast
-//
-//  Created by Ahmed El Sayyad Mohamed on 12/06/2026.
-//
+import Network
+import Combine
 
-import Foundation
+class NetworkMonitor: ObservableObject {
+    private let monitor = NWPathMonitor()
+    private let queue = DispatchQueue(label: "NetworkMonitor")
+    @Published var isConnected: Bool = true
+
+    init() {
+        monitor.pathUpdateHandler = { path in
+            DispatchQueue.main.async {
+                self.isConnected = (path.status == .satisfied)
+            }
+        }
+        monitor.start(queue: queue)
+    }
+}

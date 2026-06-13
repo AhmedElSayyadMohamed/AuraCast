@@ -54,7 +54,19 @@ struct DaySummary: Decodable {
 }
 
 struct HourWeather: Decodable {
-    let time: String       
+    let time: String
     let temp_c: Double
     let condition: Condition
+}
+
+extension WeatherResponse {
+    func toSearchResult() -> CitySearchResult {
+        return CitySearchResult(
+            name: location.name,
+            region: location.region,
+            country: location.country,
+            lat: location.lat,
+            lon: location.lon
+        )
+    }
 }

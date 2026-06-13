@@ -1,10 +1,3 @@
-//
-//  Shapes.swift
-//  Weather
-//
-//  Created by Dara To on 2022-06-13.
-//
-
 import SwiftUI
 
 struct Arc: Shape {

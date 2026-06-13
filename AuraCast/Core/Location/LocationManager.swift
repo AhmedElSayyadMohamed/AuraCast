@@ -5,93 +5,51 @@
 //  Created by Ahmed El Sayyad Mohamed on 11/06/2026.
 //
 
+import Foundation
 import CoreLocation
 
-class LocationService: NSObject, ObservableObject {
-    
-    private var continuation: CheckedContinuation<CLLocationCoordinate2D, Error>?
+class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let manager = CLLocationManager()
+    
+    @Published var location: CLLocation?
+    @Published var authorizationStatus: CLAuthorizationStatus?
+    
+    let cairoLocation = CLLocation(latitude: 30.0444, longitude: 31.2357)
     
     override init() {
         super.init()
         manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyKilometer
+        manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
     }
     
-    func requestLocation() async throws -> CLLocationCoordinate2D {
-        return try await withCheckedThrowingContinuation { cont in
-            self.continuation = cont
-            
-            switch manager.authorizationStatus {
-            case .notDetermined:
-                manager.requestWhenInUseAuthorization()
-                
-            case .authorizedWhenInUse, .authorizedAlways:
-                manager.requestLocation()
-                
-            case .denied, .restricted:
-                cont.resume(throwing: LocationError.permissionDenied)
-                self.continuation = nil
-                
-            @unknown default:
-                cont.resume(throwing: LocationError.unknown)
-                self.continuation = nil
-            }
-        }
+    func requestLocationPermission() {
+        manager.requestWhenInUseAuthorization()
     }
-}
-
-extension LocationService: CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        
+        self.authorizationStatus = manager.authorizationStatus
+        
         switch manager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
             manager.requestLocation()
         case .denied, .restricted:
-            continuation?.resume(throwing: LocationError.permissionDenied)
-            continuation = nil
-        default:
+            self.location = cairoLocation
+        case .notDetermined:
             break
+        @unknown default:
+            self.location = cairoLocation
         }
     }
     
-    func locationManager(_ manager: CLLocationManager,
-                         didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
-        continuation?.resume(returning: location.coordinate)
-        continuation = nil
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let firstLocation = locations.first else { return }
+        self.location = firstLocation
     }
     
-    func locationManager(_ manager: CLLocationManager,
-                         didFailWithError error: Error) {
-        let clError = error as? CLError
-        
-        if clError?.code == .locationUnknown {
-            manager.requestLocation()
-            return
-        }
-        
-        if clError?.code == .denied {
-            continuation?.resume(throwing: LocationError.permissionDenied)
-            continuation = nil
-            return
-        }
-        
-        continuation?.resume(throwing: error)
-        continuation = nil
-    }
-}
-
-enum LocationError: LocalizedError {
-    case permissionDenied
-    case unknown
-    
-    var errorDescription: String? {
-        switch self {
-        case .permissionDenied:
-            return "Location permission denied. Please enable it in Settings."
-        case .unknown:
-            return "An unknown location error occurred."
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        if self.location == nil {
+            self.location = cairoLocation
         }
     }
 }

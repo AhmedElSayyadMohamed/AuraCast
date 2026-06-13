@@ -8,15 +8,25 @@
 import Foundation
 
 struct CitySearchResult: Codable, Identifiable, Hashable {
-    var id: String
-    var name: String
-    var region: String
-    var country: String
-    var lat: Double
-    var lon: Double
+    var id: String {
+        return "\(lat),\(lon)"
+    }
     
-    init(id: String = UUID().uuidString, name: String, region: String = "", country: String, lat: Double, lon: Double) {
-        self.id = id
+    let name: String
+    let region: String
+    let country: String
+    let lat: Double
+    let lon: Double
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case region
+        case country
+        case lat
+        case lon
+    }
+    
+    init(name: String, region: String = "", country: String, lat: Double, lon: Double) {
         self.name = name
         self.region = region
         self.country = country
