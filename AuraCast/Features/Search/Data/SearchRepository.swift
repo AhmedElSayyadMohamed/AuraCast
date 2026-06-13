@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol WeatherRepositoryProtocol {
+    func getWeatherForecast(lat: Double, lon: Double, days: Int) async throws -> WeatherResponse
+}
