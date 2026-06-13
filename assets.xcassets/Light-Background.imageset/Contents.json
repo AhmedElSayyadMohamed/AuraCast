@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Forecast Widgets.png",
+      "filename" : "Light-Background.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Forecast Widgets@2x.png",
+      "filename" : "120.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Forecast Widgets@3x.png",
+      "filename" : "1024.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
