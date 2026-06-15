@@ -2,7 +2,7 @@ import Foundation
 
 protocol WeatherRepositoryProtocol {
     func getWeatherForecast(lat: Double, lon: Double) async throws -> WeatherResponse
-    
+    func searchCities(query: String) async throws -> [CitySearchResult]
     func getFavoriteLocations() -> [Forecast]
     func addLocationToFavorites(forecast: Forecast)
     func removeLocationFromFavorites(lat: Double, lon: Double)
@@ -10,19 +10,23 @@ protocol WeatherRepositoryProtocol {
 }
 
 class WeatherRepository: WeatherRepositoryProtocol {
-    private let weatherService: WeatherService
+    
+    private let networkHelper: NetworkHelper
     private let coreDataManager: CoreDataManager
 
-    init(weatherService: WeatherService = WeatherService(),
+    init(networkHelper: NetworkHelper = NetworkHelper(),
          coreDataManager: CoreDataManager = .shared) {
-        self.weatherService = weatherService
+        self.networkHelper = networkHelper
         self.coreDataManager = coreDataManager
     }
     
     func getWeatherForecast(lat: Double, lon: Double) async throws -> WeatherResponse {
-        return try await weatherService.fetchWeather(lat: lat, lon: lon)
+        return try await networkHelper.fetchWeather(lat: lat, lon: lon)
     }
     
+    func searchCities(query: String) async throws -> [CitySearchResult] {
+        return try await networkHelper.searchCities(query: query)
+    }
     func getFavoriteLocations() -> [Forecast] {
         let savedEntities = coreDataManager.fetchAllLocations()
         

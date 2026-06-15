@@ -14,14 +14,18 @@ class HomeViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
 
-    private let service = WeatherService()
+    private var weatherRepository : WeatherRepositoryProtocol
     private let locationManager = LocationManager()
     private var cancellables = Set<AnyCancellable>()
 
+    init() {
+        weatherRepository = WeatherRepository()
+        setupLocationObserver()
+    }
     var isMorning: Bool {
         let hour = Calendar.current.component(.hour, from: .now)
-        return hour >= 5 && hour < 18
-//        return true
+//        return hour >= 5 && hour < 18
+        return false
     }
     
     var locationName: String { currentWeather?.location.name ?? "" }
@@ -52,10 +56,6 @@ class HomeViewModel: ObservableObject {
         currentWeather?.forecast.forecastday ?? []
     }
 
-    init() {
-        setupLocationObserver()
-    }
-
     private func setupLocationObserver() {
         locationManager.$location
             .compactMap { $0 }
@@ -76,7 +76,8 @@ class HomeViewModel: ObservableObject {
         isLoading = true
         errorMessage = nil
         do {
-            currentWeather = try await service.fetchWeather(lat: lat, lon: lon)
+            currentWeather = try await weatherRepository.getWeatherForecast(lat: lat, lon: lon)
+
         } catch {
             errorMessage = error.localizedDescription
         }

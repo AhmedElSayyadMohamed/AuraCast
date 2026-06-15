@@ -7,6 +7,7 @@ struct FavoritesListView: View {
     @State private var showDeleteConfirmation = false
     
     var body: some View {
+        NavigationView {
         ZStack {
             Color.background
                 .ignoresSafeArea()
@@ -50,21 +51,15 @@ struct FavoritesListView: View {
                 } else {
                     List {
                         ForEach(viewModel.favoriteCities) { forecast in
-                            ZStack {
-                                FavouriteWidget(forecast: forecast)
-                                
                                 NavigationLink(
                                     destination: WeatherDetailView(
-                                        viewModel: WeatherDetailViewModel(repository: viewModel.repository),
-                                        cityName: forecast.location,
+                                        viewModel: WeatherDetailViewModel(initialCityName: forecast.location),
                                         lat: forecast.lat,
                                         lon: forecast.lon
                                     )
                                 ) {
-                                    EmptyView()
+                                    FavouriteWidget(forecast: forecast)
                                 }
-                                .opacity(0)
-                            }
                             .listRowBackground(Color.clear)
                             .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
                             .listRowSeparator(.hidden)
@@ -84,6 +79,7 @@ struct FavoritesListView: View {
                     .padding(.horizontal, 20)
                 }
             }
+        }
         }
         .navigationBarHidden(true)
         .onAppear {

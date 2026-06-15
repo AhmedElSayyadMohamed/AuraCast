@@ -27,7 +27,7 @@ struct TabBar: View {
                 Button {
                     action()
                 } label: {
-                    Image(systemName: "mappin.and.ellipse")
+                    Image(systemName: "list.star")
                         .frame(width: 44, height: 44)
                 }
                 
@@ -37,7 +37,7 @@ struct TabBar: View {
                 NavigationLink {
                     SearchView()
                 } label: {
-                    Image(systemName: "list.star")
+                    Image(systemName: "magnifyingglass")
                         .frame(width: 44, height: 44)
                 }
             }

@@ -15,19 +15,19 @@ class SearchViewModel: ObservableObject {
     @Published var isSearching = false
     @Published var selectedCityWeather: WeatherResponse?
     
-    private let service = WeatherService()
+    private let weatherRepository : WeatherRepositoryProtocol
+    
     private var cancellables = Set<AnyCancellable>()
     
-    var isShowingSearchResults: Bool {
-        !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    
+    init() {
+        weatherRepository = WeatherRepository()
+        setupSearchDebounce()
     }
     
     var isMorning: Bool {
         let hour = Calendar.current.component(.hour, from: .now)
         return hour >= 5 && hour < 18
-    }
-    init() {
-        setupSearchDebounce()
     }
     
     private func setupSearchDebounce() {
@@ -50,11 +50,14 @@ class SearchViewModel: ObservableObject {
         isSearching = true
         defer { isSearching = false }
         do {
-            self.searchResults = try await service.searchCities(query: query)
+            self.searchResults = try await weatherRepository.searchCities(query: query)
         } catch {
             print("Search failed: \(error.localizedDescription)")
             self.searchResults = []
         }
+    }
+    var isShowingSearchResults: Bool {
+        !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
     
 }

@@ -24,12 +24,4 @@ class FavoritesViewModel: ObservableObject {
         loadFavorites()
     }
     
-    func toggleFavorite(forecast: Forecast) {
-        if repository.checkIsFavorite(lat: forecast.lat, lon: forecast.lon) {
-            repository.removeLocationFromFavorites(lat: forecast.lat, lon: forecast.lon)
-        } else {
-            repository.addLocationToFavorites(forecast: forecast)
-        }
-        loadFavorites()
-    }
 }

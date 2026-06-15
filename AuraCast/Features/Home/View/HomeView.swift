@@ -161,7 +161,7 @@ struct HomeView: View {
         let condStr = viewModel.conditionText
         
         let primaryColor: Color = viewModel.isMorning ? .black.opacity(0.8) : .white
-        let secondaryColor: Color = viewModel.isMorning ? .black.opacity(0.6) : .secondary
+//        let secondaryColor: Color = viewModel.isMorning ? .black.opacity(0.6) : .secondary
         
         var string = AttributedString(tempStr + (hasDragged ? " | " : "\n") + condStr)
 
@@ -179,12 +179,17 @@ struct HomeView: View {
         
         if let pipe = string.range(of: " | ") {
             string[pipe].font = .title3.weight(.semibold)
-            string[pipe].foregroundColor = secondaryColor.opacity(bottomSheetTranslationProrated)
+            if hasDragged {
+                string[pipe].foregroundColor = .white
+            } else {
+                string[pipe].foregroundColor = .black
+            }
+           
         }
         
         if let weather = string.range(of: condStr) {
             string[weather].font = .title3.weight(.semibold)
-            string[weather].foregroundColor = primaryColor
+            string[weather].foregroundColor = .white
         }
         return string
     }

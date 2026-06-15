@@ -33,6 +33,7 @@ struct SearchView: View {
                 .ignoresSafeArea()
 
             ScrollView(showsIndicators: false) {
+                
                 VStack(spacing: 20) {
                     if viewModel.searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                         Spacer()
@@ -42,7 +43,7 @@ struct SearchView: View {
                             LottieView(animationName: "search-image")
                                 .frame(width: 200, height: 200)
                             
-                            Text("Loading Weather...")
+                            Text("Searching Weather...")
                                 .foregroundColor(.white)
                                 .font(.headline)
                         }
@@ -52,10 +53,10 @@ struct SearchView: View {
                             .padding(.top, 20)
                     } else {
                         ForEach(searchResults) { forecast in
+                         
                             NavigationLink(
                                 destination: WeatherDetailView(
-                                    viewModel: WeatherDetailViewModel(),
-                                    cityName: forecast.location,
+                                    viewModel: WeatherDetailViewModel(initialCityName: forecast.location),
                                     lat: forecast.lat,
                                     lon: forecast.lon
                                 )

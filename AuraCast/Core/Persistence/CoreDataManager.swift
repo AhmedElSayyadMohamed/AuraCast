@@ -22,7 +22,6 @@ class CoreDataManager {
     }
 
     func saveLocation(name: String, lat: Double, lon: Double, temperature: Int, high: Int, low: Int, weatherCondition: String) {
-        let idString = "\(lat)_\(lon)"
         let request = SavedLocationEntity.fetchRequest()
         request.predicate = NSPredicate(format: "lat == %f AND lon == %f", lat, lon)
         
